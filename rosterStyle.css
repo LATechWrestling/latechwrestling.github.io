@@ -1,0 +1,123 @@
+/* Roster page styles - responsive card/grid layout */
+:root{
+  --card-bg: #ffffff;
+  --page-bg: #f4f4f4;
+  --accent: #002147;
+  --muted: #6b7280;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--page-bg);
+  color: #111827;
+}
+
+header{
+  background: var(--accent);
+  color: #fff;
+  padding: 28px 0;
+  text-align: center;
+}
+
+.container.roster-grid{
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 18px;
+}
+
+.roster-controls{
+  grid-column: 1 / -1;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:6px;
+}
+
+/* Make section headings span the full grid width */
+.coaches.roster-grid > h2 {
+  grid-column: 1 / -1;
+  margin: 6px 0 12px 0;
+}
+
+.roster-controls input[type="search"]{
+  flex:1 1 360px;
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+}
+
+.roster-controls select{
+  padding:8px 10px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+}
+
+.visually-hidden{
+  position:absolute !important;
+  height:1px; width:1px; overflow:hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space:nowrap; /* added to prevent line breaks */
+}
+
+.athlete-card{
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(2,6,23,0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px;
+}
+
+.athlete-photo{
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.athlete-info{
+  width: 100%;
+}
+
+.athlete-name{
+  margin: 6px 0;
+  font-size: 1.05rem;
+}
+
+.athlete-name a{ color: var(--accent); text-decoration: none; }
+.athlete-name a:hover{ text-decoration: underline; }
+
+.athlete-meta{ color: var(--muted); margin: 6px 0; font-size: 0.95rem; }
+.athlete-school, .athlete-hometown{ color: #374151; margin: 2px 0; font-size: 0.92rem; }
+
+.bio-link{ display:inline-block; margin-top:10px; color: var(--accent); text-decoration: none; font-weight:600; }
+.bio-link:hover{ text-decoration: underline; }
+
+.coach-title{ color: var(--muted); font-weight:600; margin:6px 0 4px 0; }
+
+@media (max-width: 640px){
+  .athlete-photo{ width: 120px; height: 160px; }
+  .container.roster-grid{ padding: 12px; grid-gap: 12px; }
+}
+
+nav {
+    background: #e41c38;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}

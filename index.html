@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Louisiana Tech Wrestling Club</title>
+        <!-- Link to external stylesheet -->
+        <link rel="stylesheet" href="style.css">
+        <!-- Font Awesome kit (replace the kit ID in the URL if yours is different) -->
+        <script src="https://kit.fontawesome.com/63cf6ccc4e.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html" class="logo-link" aria-label="Louisiana Tech Wrestling Club home">
+                <img src="images/logo.png" alt="Louisiana Tech Wrestling Club Logo" width="242" height="110" class="site-logo">
+            </a>
+            <h1>Louisiana Tech Wrestling Club</h1>
+        </header>
+
+        <nav>
+            <a href="schedule.html">Schedule</a>
+            <a href="roster.html">Roster</a>
+            <a href="https://securelb.imodules.com/s/810/rd/interior.aspx?sid=810&gid=1&pgid=340&cid=860&fbclid=PAQ0xDSwKLRoBleHRuA2FlbQIxMAABp3GkFeeoOzfwpesyXBb843FHJxW2CbbCQPw-_DJmbvO_uewB3AKPbvQ1e7Ca_aem_VVdFMYP0s0ygTULpWLz3Wg">Support The Team</a>
+            <a href="https://ncwa.net/teams/latu/">NCWA Team Page - Men</a>
+            <a href="https://ncwa.net/teams/latuw/">NCWA Team Page - Women</a>
+        </nav>
+
+        <!-- News slideshow (pulls external article + local releases) -->
+        <section id="news-slideshow" class="news-slideshow" aria-label="Latest news">
+            <!-- slides will be injected by slideshow.js -->
+            <div class="slides-wrapper"></div>
+            <div class="slideshow-controls">
+                <button class="prev" aria-label="Previous">‹</button>
+                <button class="next" aria-label="Next">›</button>
+            </div>
+            <div class="indicators" role="tablist" aria-label="Slide indicators"></div>
+
+            <!-- Embedded news array: includes an external event link and can be extended by news.json -->
+            <script id="embedded-news" type="application/json">
+            [
+                {
+                    "title": "Louisiana Tech Wrestling Club Interest Meeting",
+                    "link": "https://events.latech.edu/event/434578-louisiana-tech-wrestling-club-interest-meeting",
+                    "image": "images/logo.jpg",
+                    "source": "University Events"
+                }
+            ]
+            </script>
+        </section>
+        <main>
+            <section id="about">
+                <h2>About Us</h2>
+                <picture>
+                    <source srcset="wrestling.webp" type="image/webp">
+                    <source srcset="wrestling.jpg" type="image/jpeg">
+                    <img src="25_26Team.jpg" alt="2025-2026 Team Picture" width="600" height="400">
+                </picture>
+                <caption>2025-2026 Team Picture</caption>
+                <br>
+                <h3>Team History</h3>
+                <p>
+                    Founded in 2022 by Rayomnd Favaza and Lee Saucier, the Louisiana Tech Wrestling Club aims to grow wrestling at all ages, but especially the collegiate level in the state of Louisiana, and the southeast as a whole. 
+                    We welcome men and women, regardless of skill level, to join our team and help us build a strong wrestling community on campus. Members are given the option to compete throught the <a href="http://ncwa.net">NCWA</a> 
+                    in tournaments across the country, or to join the team in a practice only capacity.
+                </p>
+            </section>
+
+            <section id="schedule">
+                <h2>Practice Schedule</h2>
+                <ul>
+                    <li>Mondays &amp; Wednesdays: 8:00 PM - 10:00 PM</li>
+                    <li>Tuesdays&comma; Thursdays &amp; Firdays: 7:30 PM - 9:30 PM</li>
+                    <li>Location: Lambright Sports &amp; Wellness Center&colon; Red Gym Court 3</li>
+                </ul>
+            </section>
+
+            <section id="contact">
+                <h2>Contact</h2>
+                <p>
+                    Email: <a href="mailto:latechwrestling@latech.edu">wrestling@latech.edu</a>
+                </p>
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/people/Louisiana-Tech-Wrestling-Club/61559176749252/" class="fa-brands fa-facebook" aria-label="Facebook"></a>
+                    <a href="https://x.com/LaTechWrestling" class="fa-brands fa-twitter" aria-label="Twitter"></a>
+                    <a href="https://www.instagram.com/wrestling.latech" class="fa-brands fa-instagram" aria-label="Instagram"></a>
+                    <a href="https://www.tiktok.com/@latech.wrestling" class="fa-brands fa-tiktok" aria-label="TikTok"></a>
+                    <a href="https://www.youtube.com/@LouisianaTechWrestlingClub" class="fa-brands fa-youtube" aria-label="YouTube"></a>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            &copy; 2025 Louisiana Tech Wrestling Club
+        </footer>
+
+        <script src="slideshow.js" defer></script>
+    </body>
+</html>

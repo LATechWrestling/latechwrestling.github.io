@@ -1,0 +1,380 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #00274C;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Position site logo absolutely so header text remains centered */
+header{ position: relative; }
+.site-logo{
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: var(--site-logo-max);
+  height: auto;
+}
+
+/* Make the site logo clickable and keyboard accessible */
+.logo-link{ display:inline-block; position:absolute; left:16px; top:50%; transform:translateY(-50%); }
+.logo-link img.site-logo{ position:relative; left:0; top:0; transform:none; }
+.logo-link:focus{ outline: none; }
+.logo-link:focus-visible{ box-shadow: 0 0 0 3px rgba(11,95,255,0.25); border-radius:6px; }
+
+@media (max-width:640px){
+  .site-logo{ left: 8px; max-width: 120px; }
+  header{ padding: 14px 0; }
+}
+
+nav {
+    background: #e41c38;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* when the main element has schedule-fullwidth, let it span the viewport */
+main.schedule-fullwidth{ max-width:none; margin: 12px 0; padding-left:36px; padding-right:36px; }
+
+/* Make schedule and similar content areas able to expand full width when needed */
+.container.schedule-fullwidth, .schedule-table{ width:100%; box-sizing:border-box; padding:0 36px; }
+
+/* Next match display */
+.next-match{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 0; }
+.next-match .match-left{ display:flex; flex-direction:column; gap:12px; }
+.match-logos{ display:flex; align-items:center; gap:18px; }
+.match-logo{ width:auto; height:var(--primary-logo-size); object-fit:contain; border-radius:var(--logo-radius); }
+.match-at{ font-weight:700; font-size:20px; color:#333; }
+.match-location{ font-size:0.95rem; color:#374151; }
+.next-match .match-right{ text-align:right; display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+.next-label{ font-weight:700; }
+.next-datetime{ font-size:1.05rem; color:#374151; }
+.countdown{ display:flex; gap:8px; }
+.cd-box{ border:1px solid #e6eef7; padding:14px 20px; min-width:84px; text-align:center; }
+.cd-box div{ line-height:1; font-size:1.25rem; font-weight:700; }
+.cd-box .cd-label{ color:#6b7280; font-size:0.85rem; margin-top:6px; }
+
+@media (max-width:960px){
+  .next-match{ flex-direction:column; align-items:flex-start; }
+  .next-match .match-right{ width:100%; text-align:left; align-items:flex-start; }
+}
+
+footer {
+    background: #00274C;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+  position: static; /* do not use fixed positioning so footer doesn't overlay page content */
+    width: 100%;
+    bottom: 0;
+}
+
+/* News slideshow styles */
+.news-slideshow{
+  max-width: 1000px;
+  margin: 18px auto;
+  position: relative;
+  padding: 0 12px;
+}
+.news-slideshow .slides-wrapper{
+    margin-bottom: 36px; /* ensure space at bottom so content doesn't butt directly against footer */
+  overflow: hidden;
+  border-radius: 8px;
+}
+.news-slide{
+  display: none;
+  position: relative;
+}
+.news-slide.active{ display:block; }
+.news-slide img{ width:100%; height:360px; object-fit:cover; display:block; border-radius:8px; }
+.news-caption{
+  position: absolute;
+  left: 12px; right: 12px; bottom: 12px;
+  color: #fff;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%);
+  padding: 12px;
+  border-radius: 6px;
+}
+.news-caption h4{ margin:0; font-size:1.05rem; }
+.slideshow-controls{ position:absolute; inset:0; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
+.slideshow-controls button{ pointer-events:auto; background:rgba(0,0,0,0.45); color:#fff; border:0; font-size:28px; width:46px; height:46px; border-radius:50%; margin:8px; }
+.indicators{ text-align:center; margin-top:8px; }
+.indicator{ display:inline-block; width:10px; height:10px; border-radius:50%; background:#cbd5e1; margin:0 6px; cursor:pointer; }
+.indicator.active{ background:#0b5fff; }
+
+@media (max-width:640px){
+  .news-slide img{ height:200px; }
+}
+
+/* Schedule table styles */
+.schedule-controls{ margin-bottom:18px; }
+.schedule-controls .import-row, .schedule-controls .csv-import, .schedule-controls .table-actions{ margin:8px 0; }
+/* Legacy table reset for broad support — we'll use custom event rows */
+#schedule-table{ width:100%; border-collapse: collapse; }
+#schedule-table th, #schedule-table td{ padding:10px 8px; border-bottom:1px solid #e6eef7; text-align:left; }
+#schedule-table tbody tr:hover{ background:#f8fafc; }
+.table-actions button{ margin-right:8px; }
+
+/* Event row layout */
+.event-list{ width:100%; border-collapse:collapse; }
+.event-row{ border-bottom:1px solid #eef3fb; }
+.event-cell{ padding:14px 12px; display:flex; align-items:center; justify-content:space-between; }
+/* left reserved slot for logos so text lines up across rows */
+.event-cell .logo-slot{ flex:0 0 var(--schedule-logo-area); display:flex; align-items:center; justify-content:flex-start; }
+.event-left{ display:flex; flex-direction:column; align-items:flex-start; text-align:left; flex:1 1 auto; }
+.logo-slot img{ max-width: var(--schedule-logo-size); height: var(--schedule-logo-size); object-fit:contain; display:block; }
+.logo-slot{ padding-right:12px; }
+.event-meta{ font-size:0.85rem; color:var(--muted); margin-bottom:6px; text-align:left; }
+.event-title{ font-size:1.05rem; font-weight:700; color:var(--accent); display:flex; align-items:center; gap:10px; text-align:left; }
+.away-pill{ display:inline-block; background:#e2e8f0; color:#374151; padding:4px 8px; border-radius:6px; font-size:0.75rem; font-weight:700; }
+.event-location{ font-size:0.95rem; color:#374151; margin-left:18px; white-space:nowrap; }
+
+@media (max-width:760px){
+  .event-cell{ flex-direction:column; align-items:flex-start; gap:8px; }
+  .event-location{ margin-left:0; }
+}
+
+/* Event result styling: hidden when empty, visible when content present */
+.event-result{ display:none; margin-top:8px; font-size:0.95rem; color:#0b5fff; font-weight:700; }
+.event-result[data-has-result="true"]{ display:block; color:#0b5fff; }
+
+/* Opponent logo support */
+.opponent-logo{ width:auto; height:var(--schedule-logo-size); object-fit:contain; border-radius:var(--logo-radius); margin-right:12px; }
+/* Next match module uses .match-logo and opp-logo — make opp-logo match primary size */
+.opp-logo{ width:auto; height:var(--primary-logo-size); object-fit:contain; border-radius:var(--logo-radius); }
+.event-cell .event-left{ display:flex; flex-direction:column; align-items:flex-start; }
+.event-cell .event-left.with-logo{ flex-direction:row; align-items:center; gap:12px; }
+
+/* Ensure SVG logos that use currentColor inherit a visible color */
+.event-cell img.opponent-logo[src$='.svg']{ color: var(--accent); }
+
+.event-text{ display:flex; flex-direction:column; align-items:flex-start; text-align:left; }
+.event-text .event-meta{ margin-bottom:4px; }
+
+/* If a row sets data-logo but no <img> is present, show a minimal placeholder using ::before */
+.event-row[data-logo]:not([data-logo=""]) .event-cell .logo-slot::before{
+  content: '';
+  display:inline-block;
+  width:var(--schedule-logo-size); height:var(--schedule-logo-size); border-radius:var(--logo-radius); background:#eef2ff; margin-right:12px; vertical-align:middle;
+}
+
+/* when an image loads successfully, hide the placeholder */
+.event-row.has-logo-rendered[data-logo]:not([data-logo=""]) .event-cell .logo-slot::before{
+  display:none;
+}
+
+@media (max-width:760px){
+  #schedule-table thead{ display:none; }
+  #schedule-table tbody td{ display:block; width:100%; }
+  #schedule-table tbody td[data-field]{ padding-left:12px; }
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Make the button sufficiently large for a bigger icon */
+  width: 56px;
+  height: 56px;
+  font-size: 24px; /* icon size */
+  text-decoration: none;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: #fff;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+
+.social-links a:hover,
+.social-links a:focus {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.25);
+  opacity: 0.95;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-tiktok {
+  background: #000000;
+  color: white;
+}
+
+.fa-youtube {
+  background: #bb0000;
+  color: white;
+}
+
+/* Roster page styles (merged from rosterStyle.css) */
+:root{
+  --card-bg: #ffffff;
+  --page-bg: #f4f4f4;
+  --accent: #002147;
+  --muted: #6b7280;
+  /* logo sizing variables - tweak these to scale logos across the site */
+  --site-logo-max: 220px;
+  /* primary size used for match and opponent logos so they match visually */
+  --primary-logo-size: 88px;
+  --match-logo-size: var(--primary-logo-size);
+  --opponent-logo-size: var(--primary-logo-size);
+  /* schedule-specific (row) logo size — smaller than Next Match */
+  --schedule-logo-size: 60px;
+  --logo-radius: 8px;
+}
+
+/* layout for roster grid container */
+.container.roster-grid{
+  /* allow the roster to expand full-width */
+  width: 100%;
+  margin: 0 auto;
+  padding: 18px 36px;
+  box-sizing: border-box;
+}
+
+.roster-controls{
+  grid-column: 1 / -1;
+  display:flex;
+  gap:12px;
+  align-items:center;
+  margin-bottom:6px;
+}
+
+/* Make section headings span the full grid width */
+.coaches.roster-grid > h2 {
+  grid-column: 1 / -1;
+  margin: 6px 0 12px 0;
+}
+
+.roster-controls input[type="search"]{
+  flex:1 1 360px;
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+}
+
+.roster-controls select{
+  padding:8px 10px;
+  border-radius:6px;
+  border:1px solid #d1d5db;
+}
+
+.visually-hidden{
+  position:absolute !important;
+  height:1px; width:1px; overflow:hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space:nowrap; /* added to prevent line breaks */
+}
+
+.athlete-card{
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(2,6,23,0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 18px;
+}
+
+.athlete-photo{
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.athlete-info{
+  width: 100%;
+}
+
+.athlete-name{
+  margin: 6px 0;
+  font-size: 1.05rem;
+}
+
+.athlete-name a{ color: var(--accent); text-decoration: none; }
+.athlete-name a:hover{ text-decoration: underline; }
+
+.athlete-meta{ color: var(--muted); margin: 6px 0; font-size: 0.95rem; }
+.athlete-school, .athlete-hometown{ color: #374151; margin: 2px 0; font-size: 0.92rem; }
+
+.bio-link{ display:inline-block; margin-top:10px; color: var(--accent); text-decoration: none; font-weight:600; }
+.bio-link:hover{ text-decoration: underline; }
+
+.coach-title{ color: var(--muted); font-weight:600; margin:6px 0 4px 0; }
+
+@media (max-width:960px){
+  .site-logo{ left: 10px; max-width: 160px; }
+  .logo-link{ left:10px; }
+  header{ padding: 16px 0; }
+}
+
+@media (max-width:640px){
+  .site-logo{ left: 8px; max-width: 120px; }
+  .logo-link{ left:8px; }
+  header{ padding: 14px 0; }
+  /* scale down match logos on narrow screens */
+  .match-logo{ width: calc(var(--match-logo-size) * 0.75); height: calc(var(--match-logo-size) * 0.75); }
+  .opponent-logo{ width: calc(var(--opponent-logo-size) * 0.75); height: calc(var(--opponent-logo-size) * 0.75); }
+  .event-row[data-logo]:not([data-logo=""]) .event-cell::before{ width: calc(var(--opponent-logo-size) * 0.75); height: calc(var(--opponent-logo-size) * 0.75); }
+}
+
+/* Horizontal roster row layout (desktop) to match provided screenshot */
+@media (min-width: 760px){
+  .container.roster-grid{ display:block; width:100%; max-width: none; padding:18px 48px; }
+  .athlete-card{ display:flex; flex-direction:row; align-items:center; gap:20px; padding:12px 18px; margin-bottom:14px; }
+  /* small separator between rows */
+  .athlete-card{ border-bottom:1px solid #eef3fb; }
+  .athlete-photo{ width:88px; height:88px; border-radius:6px; margin-bottom:0; flex:0 0 88px; }
+  /* left column fixed (photo + name), middle column flexes, right column fixed */
+  .athlete-left{ flex:0 0 240px; display:flex; align-items:flex-start; gap:12px; }
+  .athlete-info{ flex:1 1 auto; display:flex; flex-direction:row; align-items:center; justify-content:space-between; gap:12px; }
+  .athlete-right{ flex:0 0 260px; }
+  .athlete-meta{ order:2; margin:0 12px 0 0; }
+  .athlete-name{ font-size:1.4rem; margin:0; font-weight:700; color:var(--accent); }
+  .athlete-info .bio-link{ margin-top:0; }
+  /* left column: small weight above name */
+  .athlete-card .weight-pill{ font-size:0.9rem; color:var(--muted); margin-right:8px; }
+  .athlete-left{ display:flex; flex-direction:column; align-items:flex-start; gap:4px; }
+  /* right aligned meta (class / hometown) */
+  .athlete-right{ text-align:right; color:var(--muted); min-width:220px; }
+}
+
+/* hover effect to make rows feel interactive */
+.athlete-card:hover{ background: linear-gradient(180deg, rgba(2,6,23,0.02), rgba(2,6,23,0.01)); transform: translateY(-1px); transition: all 120ms ease; }
