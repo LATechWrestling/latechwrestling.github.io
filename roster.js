@@ -9,7 +9,7 @@
   const cards = Array.from(grid.querySelectorAll('.athlete-card'));
 
   // class order mapping for sorting
-  const classOrder = { 'Freshman': 1, 'Sophomore': 2, 'Junior': 3, 'Senior': 4 };
+  const classOrder = { 'Freshman': 1, 'Sophomore': 2, 'Junior': 3, 'Senior': 4, 'Graduate': 5};
 
   function normalize(str){
     return (str || '').toString().trim().toLowerCase();
