@@ -48,22 +48,69 @@ nav a {
 }
 
 main {
-  max-width: 900px;
-  margin: 30px auto;
+  margin: 60px 36px;
   background: #fff;
   padding: 30px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Increase font sizes for home page content */
+main h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+  font-weight: bold;
+}
+
+main h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+main p {
+  font-size: 1.33rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+main ul {
+  font-size: 1.33rem;
+  line-height: 1.6;
+}
+
+main ul li {
+  margin-bottom: 0.6rem;
+}
+
+main a {
+  font-size: inherit;
+}
+
+/* Team picture styling - full width with whitespace */
+main picture {
+  display: block;
+  margin: 1.5rem 0;
+}
+
+main picture img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  padding: 0 40px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
 /* when the main element has schedule-fullwidth, let it span the viewport */
-main.schedule-fullwidth{ max-width:none; margin: 12px 0; padding-left:36px; padding-right:36px; }
+main.schedule-fullwidth{ max-width:none; margin: 60px 36px; padding-left:36px; padding-right:36px; }
 
 /* Make schedule and similar content areas able to expand full width when needed */
 .container.schedule-fullwidth, .schedule-table{ width:100%; box-sizing:border-box; padding:0 36px; }
 
 /* Next match display */
-.next-match{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 0; }
+.next-match{ display:flex; align-items:center; justify-content:space-between; gap:20px; padding:18px 36px; margin: 60px 36px; border:1px solid #e6eef7; border-radius:8px; background:#f9fafb; }
 .next-match .match-left{ display:flex; flex-direction:column; gap:12px; }
 .match-logos{ display:flex; align-items:center; gap:18px; }
 .match-logo{ width:auto; height:var(--primary-logo-size); object-fit:contain; border-radius:var(--logo-radius); }
@@ -94,8 +141,7 @@ footer {
 
 /* News slideshow styles */
 .news-slideshow{
-  max-width: 1000px;
-  margin: 18px auto;
+  margin: 60px 36px;
   position: relative;
   padding: 0 12px;
 }
@@ -260,7 +306,7 @@ footer {
 .container.roster-grid{
   /* allow the roster to expand full-width */
   width: 100%;
-  margin: 0 auto;
+  margin: 60px 36px;
   padding: 18px 36px;
   box-sizing: border-box;
 }
@@ -357,7 +403,7 @@ footer {
 
 /* Horizontal roster row layout (desktop) to match provided screenshot */
 @media (min-width: 760px){
-  .container.roster-grid{ display:block; width:100%; max-width: none; padding:18px 48px; }
+  .container.roster-grid{ display:block; width:100%; max-width: none; margin: 60px 36px; padding:18px 48px; }
   .athlete-card{ display:flex; flex-direction:row; align-items:center; gap:20px; padding:12px 18px; margin-bottom:14px; }
   /* small separator between rows */
   .athlete-card{ border-bottom:1px solid #eef3fb; }
