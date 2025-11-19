@@ -155,7 +155,8 @@ footer {
   position: relative;
 }
 .news-slide.active{ display:block; }
-.news-slide img{ width:100%; height:400px; object-fit:cover; display:block; border-radius:8px; }
+/* Larger slideshow images for better visual impact */
+.news-slide img{ width:100%; height:640px; object-fit:cover; display:block; border-radius:8px; }
 .news-caption{
   position: absolute;
   left: 12px; right: 12px; bottom: 12px;
@@ -171,8 +172,13 @@ footer {
 .indicator{ display:inline-block; width:10px; height:10px; border-radius:50%; background:#cbd5e1; margin:0 6px; cursor:pointer; }
 .indicator.active{ background:#0b5fff; }
 
+@media (max-width:900px){
+  /* increase mobile/tablet size while keeping aspect reasonable */
+  .news-slide img{ height:360px; }
+}
+
 @media (max-width:640px){
-  .news-slide img{ height:200px; }
+  .news-slide img{ height:260px; }
 }
 
 /* Schedule table styles */
@@ -206,6 +212,38 @@ footer {
 /* Event result styling: hidden when empty, visible when content present */
 .event-result{ display:none; margin-top:8px; font-size:0.95rem; color:#0b5fff; font-weight:700; }
 .event-result[data-has-result="true"]{ display:block; color:#0b5fff; }
+
+/* Right-side result column (moved from .event-left). Updated so results live in a fixed-width
+   column on the right and are not pushed by longer location text. Also increases result font
+   size and sets color to black for better visibility. */
+
+.event-right{
+  flex: 0 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+  padding-left: 12px;
+  order: 2; /* swapped: show results before location */
+}
+
+/* Make location a fixed-width column placed after results so it won't push the result column */
+.event-location{
+  order: 3;
+  flex: 0 0 240px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Result visual tweaks */
+.event-right .event-result{ margin-top: 0; font-size: 1.05rem; color: #000; font-weight: 700; }
+
+@media (max-width:760px){
+  /* On small screens stack naturally: results first, then location */
+  .event-right{ width:100%; flex: none; order: 2; justify-content: flex-start; text-align: left; padding-left:0; }
+  .event-location{ order: 3; flex: none; width:100%; white-space:normal; }
+}
 
 /* Opponent logo support */
 .opponent-logo{ width:auto; height:var(--schedule-logo-size); object-fit:contain; border-radius:var(--logo-radius); margin-right:12px; }
@@ -424,3 +462,44 @@ footer {
 
 /* hover effect to make rows feel interactive */
 .athlete-card:hover{ background: linear-gradient(180deg, rgba(2,6,23,0.02), rgba(2,6,23,0.01)); transform: translateY(-1px); transition: all 120ms ease; }
+
+/* Stats Bar */
+.stats-bar {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 2rem auto 1rem;
+  padding: 1rem;
+  background: #002F87;
+  border-radius: 8px;
+}
+
+.stat-box {
+  flex: 1;
+  text-align: center;
+  color: white;
+}
+
+.stat-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* Match results */
+.event-result {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+  color: #444;
+  font-weight: 600;
+}
+
+.event-result .result-text {
+  font-weight: 700;
+}

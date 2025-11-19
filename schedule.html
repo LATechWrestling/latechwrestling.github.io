@@ -48,149 +48,280 @@
       </div>
     </section>
 
+    <section id="stats-bar" class="stats-bar container" aria-label="Team Statistics">
+      <div class="stat-box"><div class="stat-value" id="stat-overall">0-0</div><div class="stat-label">Overall</div></div>
+      <div class="stat-box"><div class="stat-value" id="stat-overall-pct">.000</div><div class="stat-label">Pct</div></div>
+      <div class="stat-box"><div class="stat-value" id="stat-conf">0-0</div><div class="stat-label">Conference</div></div>
+      <div class="stat-box"><div class="stat-value" id="stat-conf-pct">.000</div><div class="stat-label">Conf Pct</div></div>
+      <div class="stat-box"><div class="stat-value" id="stat-streak">—</div><div class="stat-label">Streak</div></div>
+      <div class="stat-box"><div class="stat-value" id="stat-home">0-0</div><div class="stat-label">Home</div></div>
+      <div class="stat-box"><div class="stat-value" id="stat-away">0-0</div><div class="stat-label">Away</div></div>
+    </section>
+
+    <script>
+      (function(){
+
+        function parseResult(str) {
+          if (!str) return null;
+          const clean = str.trim().toUpperCase();
+          if (clean.startsWith("W")) return "W";
+          if (clean.startsWith("L")) return "L";
+          return null;
+        }
+
+        function isHomeEvent(locationText) {
+          return /home|ruston|lambright/i.test(locationText);
+        }
+
+        function updateStats() {
+          const rows = Array.from(document.querySelectorAll('.event-row'));
+          let overallW = 0, overallL = 0;
+          let confW = 0, confL = 0;
+          let homeW = 0, homeL = 0;
+          let awayW = 0, awayL = 0;
+
+          let streakArr = []; // chronological W/L for streak calculation
+
+          rows.forEach((row) => {
+
+            // ❌ Ignore tournaments completely
+            const type = row.getAttribute('data-type') || "";
+            if (type.toLowerCase() === "tournament") return;
+
+            const result = parseResult(row.querySelector('.result-text')?.textContent || "");
+            if (!result) return; // no score yet → skip
+
+            const location = row.querySelector('.event-location')?.textContent || "";
+            const isHome = isHomeEvent(location);
+            const isAway = !isHome; // no neutral events in your system
+
+            // Track streaks
+            streakArr.push(result);
+
+            // Overall
+            if (result === "W") overallW++;
+            if (result === "L") overallL++;
+
+            // Conference (uses your explicit flag)
+            const isConf = row.getAttribute("isConference") === "true";
+            if (isConf) {
+              if (result === "W") confW++;
+              if (result === "L") confL++;
+            }
+
+            // Home / Away splits
+            if (isHome) {
+              if (result === "W") homeW++;
+              if (result === "L") homeL++;
+            } else if (isAway) {
+              if (result === "W") awayW++;
+              if (result === "L") awayL++;
+            }
+          });
+
+          // Win percentage formatter
+          function pct(w, l) {
+            const total = w + l;
+            if (total === 0) return ".000";
+            return (w / total).toFixed(3).replace(/^0/, "");
+          }
+
+          // Build streak (W3, L2, etc.)
+          let streak = "—";
+          if (streakArr.length > 0) {
+            let last = streakArr[streakArr.length - 1];
+            let count = 1;
+            for (let i = streakArr.length - 2; i >= 0; i--) {
+              if (streakArr[i] === last) count++;
+              else break;
+            }
+            streak = last + count;
+          }
+
+          // Update DOM
+          document.getElementById('stat-overall').textContent = `${overallW}-${overallL}`;
+          document.getElementById('stat-overall-pct').textContent = pct(overallW, overallL);
+          document.getElementById('stat-conf').textContent = `${confW}-${confL}`;
+          document.getElementById('stat-conf-pct').textContent = pct(confW, confL);
+          document.getElementById('stat-streak').textContent = streak;
+          document.getElementById('stat-home').textContent = `${homeW}-${homeL}`;
+          document.getElementById('stat-away').textContent = `${awayW}-${awayL}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', updateStats);
+
+      })();
+    </script>
+
   <main class="container schedule-fullwidth">
       <h2>2025-2026 Schedule</h2>
       <section class="schedule-table">
         <table id="schedule-table" class="event-list">
           <tbody>
-            <tr class="event-row" data-logo="images/Lyon.webp">
+            <tr class="event-row" data-logo="images/Lyon.webp" data-type="dual" isConference="false">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-11-15 · 10:00 AM CST</div>
                   <div class="event-title"><span class="away-pill">at</span> Lyon College</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="true">
+                    <span class="result-text">W 26-23</span>
+                  </div>
                 </div>
                 <div class="event-location">Batesville, AR</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/CBC.png">
+            <tr class="event-row" data-logo="images/CBC.png" data-type="dual" isConference="false">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-11-15 · 11:15 AM CST</div>
                   <div class="event-title"><span class="away-pill">at</span> Central Baptist College</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="true">
+                    <span class="result-text">L 24-20</span>
+                  </div>
                 </div>
                 <div class="event-location">Batesville, AR</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/SHSU_athletics_logo.svg.png">
+            <tr class="event-row" data-logo="images/SHSU_athletics_logo.svg.png" data-type="dual" isConference="true">
               <td class="event-cell">
                 <div class="event-left">
-                  <div class="event-meta">2025-12-06 · 10:00 AM CST</div>
+                  <div class="event-meta">2025-12-06 · 12:00 AM CST</div>
                   <div class="event-title">Sam Houston State University</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Home / Lambright Sports and Wellness Center</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/Auburn_Tigers_logo.svg.png">
+            <tr class="event-row" data-logo="images/Auburn_Tigers_logo.svg.png" data-type="dual" isConference="false">
               <td class="event-cell">
                 <div class="event-left">
-                  <div class="event-meta">2025-12-06 · 12:00 PM CST</div>
+                  <div class="event-meta">2025-12-06 · 13:00 PM CST</div>
                   <div class="event-title">Auburn University</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Home / Lambright Sports and Wellness Center</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/LSU_Athletics_logo.svg.png">
+            <tr class="event-row" data-logo="images/LSU_Athletics_logo.svg.png" data-type="dual" isConference="true">
               <td class="event-cell">
                 <div class="event-left">
-                  <div class="event-meta">2025-12-06 · 2:00 PM CST</div>
+                  <div class="event-meta">2025-12-06 · 14:00 PM CST</div>
                   <div class="event-title">Louisiana State University</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Home / Lambright Sports and Wellness Center</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/Huntingdon.png">
+            <tr class="event-row" data-logo="images/Huntingdon.png" data-type="Tournament">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2026-01-04 · TBD</div>
                   <div class="event-title"><span class="away-pill">at</span> Hawk Classic Open</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Montgomery, AL</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/logo.png">
+            <tr class="event-row" data-logo="images/logo.png" data-type="Tournament">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-01-10 · TBD</div>
                   <div class="event-title">Louisiana Tech Bulldog Rumble</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Home / Lambright Sports and Wellness Center</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/NOC.png">
+            <tr class="event-row" data-logo="images/NOC.png" data-type="dual" isConference="false">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-01-17 · TBD</div>
                   <div class="event-title"><span class="away-pill">at</span> Northern Oklahoma</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Clarksville, AR</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/ozarks.svg">
+            <tr class="event-row" data-logo="images/ozarks.svg" data-type="dual" isConference="false">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-01-17 · TBD</div>
                   <div class="event-title"><span class="away-pill">at</span> University of the Ozarks</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Clarksville, AR</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/famu.svg">
+            <tr class="event-row" data-logo="images/famu.svg" data-type="Tournament">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-02-14 · TBD</div>
                   <div class="event-title"><span class="away-pill">at</span> Seminole Rattler Invite</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Tallahasse, FL</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="">
+            <tr class="event-row" data-logo="" data-type="Tournament">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-02-21 · TBD</div>
                   <div class="event-title">LCWA State Championships</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Home / Lambright Sports and Wellness Center</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/NCWA.png">
+            <tr class="event-row" data-logo="images/Wayne_State_Wildcats_logo.svg.png" data-type="Tournament">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-03-14 · TBD</div>
                   <div class="event-title"><span class="away-pill">at</span> Southwest Conference Championships</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
-                <div class="event-location">TBD, TX</div>
+                <div class="event-location">Wayne State College, NE</div>
               </td>
             </tr>
 
-            <tr class="event-row" data-logo="images/NCWA.png">
+            <tr class="event-row" data-logo="images/NCWA.png" data-type="Tournament">
               <td class="event-cell">
                 <div class="event-left">
                   <div class="event-meta">2025-03-26 - 2025-03-28 · TBD</div>
                   <div class="event-title">NCWA National Championships</div>
-                  <div class="event-result" aria-hidden="true"></div>
+                  <div class="event-result" data-has-result="false">
+                    <span class="result-text"></span>
+                  </div>
                 </div>
                 <div class="event-location">Bossier City, LA</div>
               </td>
@@ -241,6 +372,21 @@
               }
               // append the text wrapper back so content remains visible
               cellLeft.appendChild(textWrap);
+
+              // Move any .event-result out of the left text area into a right column
+              try{
+                var resultEl = textWrap.querySelector('.event-result');
+                if(resultEl){
+                  var right = eventCell.querySelector('.event-right');
+                  if(!right){
+                    right = document.createElement('div');
+                    right.className = 'event-right';
+                    // append the right column so it appears at the end of the row (after location)
+                    eventCell.appendChild(right);
+                  }
+                  right.appendChild(resultEl);
+                }
+              }catch(e){ /* non-fatal */ }
 
               var img = document.createElement('img');
               img.className = 'opponent-logo';
@@ -366,11 +512,25 @@
         const logo = best.el.getAttribute('data-logo') || '';
         const logos = document.querySelector('#next-match .match-logos');
         if(!logos) return;
-        const isRuston = /ruston/i.test(loc);
-        if(isRuston){
-          logos.innerHTML = '<img src="'+(logo||'')+'" class="match-logo opp-logo" alt="Opponent" /><div class="match-at">at</div><img src="images/logo.png" class="match-logo team-logo" alt="Louisiana Tech" />';
+
+        // Determine home/away more robustly:
+        // - If the row explicitly has an .away-pill it's an away event.
+        // - Otherwise, consider it home when the location contains typical home keywords.
+        const hasAwayPill = !!best.el.querySelector('.away-pill');
+        const locHomeMatch = /\b(home|ruston|lambright)\b/i.test(loc || '');
+        const isHome = !hasAwayPill && locHomeMatch;
+
+        // Derive opponent alt text from the event title where possible
+        const titleEl = best.el.querySelector('.event-title');
+        const titleText = titleEl ? titleEl.textContent.replace(/at\b/i,'').trim() : 'opponent';
+        const oppAlt = titleText + ' logo';
+
+        if(isHome){
+          // Home: opponent logo at our logo
+          logos.innerHTML = '<img src="'+(logo||'')+'" class="match-logo opp-logo" alt="'+oppAlt+'" /><div class="match-at">at</div><img src="images/logo.png" class="match-logo team-logo" alt="Louisiana Tech" />';
         } else {
-          logos.innerHTML = '<img src="images/logo.png" class="match-logo team-logo" alt="Louisiana Tech" /><div class="match-at">at</div><img src="'+(logo||'')+'" class="match-logo opp-logo" alt="Opponent" />';
+          // Away (or unknown): our logo at opponent logo
+          logos.innerHTML = '<img src="images/logo.png" class="match-logo team-logo" alt="Louisiana Tech" /><div class="match-at">at</div><img src="'+(logo||'')+'" class="match-logo opp-logo" alt="'+oppAlt+'" />';
         }
       }
 
