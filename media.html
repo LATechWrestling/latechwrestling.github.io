@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>Louisiana Tech Wrestling Club - Roster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <a href="index.html" class="logo-link" aria-label="Louisiana Tech Wrestling Club home">
+                <img src="images/logo.png" alt="Louisiana Tech Wrestling Club Logo" width="242" height="110" class="site-logo">
+            </a>
+            <h1>Louisiana Tech Wrestling Club</h1>
+        </header>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="media.html">Media</a>
+            <a href="https://securelb.imodules.com/s/810/rd/interior.aspx?sid=810&gid=1&pgid=340&cid=860&fbclid=PAQ0xDSwKLRoBleHRuA2FlbQIxMAABp3GkFeeoOzfwpesyXBb843FHJxW2CbbCQPw-_DJmbvO_uewB3AKPbvQ1e7Ca_aem_VVdFMYP0s0ygTULpWLz3Wg" target="_blank" rel="noopener noreferrer">Support The Team</a>
+            <a href="https://ncwa.net/teams/latu/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Men</a>
+            <a href="https://ncwa.net/teams/latuw/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Women</a>
+        </nav>
+
+        <main>
+            <h2>Media</h2>
+                        <section class="article-archive" id="article-archive">
+                                <!-- Articles will be rendered here from /articles_index.json -->
+                        </section>
+
+                        <script>
+                        (function(){
+                            // Render article cards from articles_index.json
+                            const container = document.getElementById('article-archive');
+                            function renderCard(a){
+                                const div = document.createElement('div');
+                                div.className = 'article article-card';
+
+                                const thumbLink = document.createElement('a');
+                                thumbLink.className = 'article-thumb-link';
+                                thumbLink.href = a.url || ('/articles/' + a.file);
+                                thumbLink.target = '_blank';
+                                thumbLink.rel = 'noopener noreferrer';
+
+                                const img = document.createElement('img');
+                                img.className = 'article-thumb';
+                                img.src = a.thumb || ('media/' + (a.thumb || 'photo1_thumb.jpg'));
+                                img.alt = a.title || 'Article';
+                                thumbLink.appendChild(img);
+
+                                const body = document.createElement('div');
+                                body.className = 'article-body';
+
+                                const title = document.createElement('h3');
+                                title.className = 'article-title';
+                                const titleLink = document.createElement('a');
+                                titleLink.href = thumbLink.href;
+                                titleLink.target = '_blank';
+                                titleLink.rel = 'noopener noreferrer';
+                                titleLink.textContent = a.title || 'Article';
+                                title.appendChild(titleLink);
+
+                                const dateP = document.createElement('div');
+                                dateP.className = 'article-date';
+                                if(a.date) {
+                                    // try to show human-friendly date
+                                    try{ dateP.textContent = new Date(a.date).toLocaleDateString(); }catch(e){ dateP.textContent = a.date; }
+                                }
+
+                                const excerpt = document.createElement('p');
+                                excerpt.className = 'article-excerpt';
+                                excerpt.textContent = a.excerpt || '';
+
+                                body.appendChild(title);
+                                if(a.date) body.appendChild(dateP);
+                                body.appendChild(excerpt);
+
+                                div.appendChild(thumbLink);
+                                div.appendChild(body);
+                                return div;
+                            }
+
+                            // Fetch the index and render cards. If fetch fails, fallback to existing static markup.
+                            fetch('/articles_index.json').then(function(res){
+                                if(!res.ok) throw new Error('no index');
+                                return res.json();
+                            }).then(function(list){
+                                container.innerHTML = '';
+                                list.sort(function(a,b){ return new Date(b.date || 0) - new Date(a.date || 0); });
+                                list.forEach(function(a){ container.appendChild(renderCard(a)); });
+                            }).catch(function(){
+                                // fallback: leave any server-rendered/static content in place
+                                console.warn('Could not load /articles_index.json — leaving static archive markup');
+                            });
+                        })();
+                        </script>
+        </main>
+        <footer>
+            &copy; 2025 Louisiana Tech Wrestling Club
+        </footer>
+    </body>
+</html>

@@ -20,6 +20,7 @@
     <nav>
       <a href="index.html">Home</a>
       <a href="roster.html">Roster</a>
+      <a href="media.html">Media</a>
       <a href="https://securelb.imodules.com/s/810/rd/interior.aspx?sid=810&gid=1&pgid=340&cid=860&fbclid=PAQ0xDSwKLRoBleHRuA2FlbQIxMAABp3GkFeeoOzfwpesyXBb843FHJxW2CbbCQPw-_DJmbvO_uewB3AKPbvQ1e7Ca_aem_VVdFMYP0s0ygTULpWLz3Wg" target="_blank" rel="noopener noreferrer">Support The Team</a>
       <a href="https://ncwa.net/teams/latu/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Men</a>
       <a href="https://ncwa.net/teams/latuw/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Women</a>
@@ -187,7 +188,7 @@
             <tr class="event-row" data-logo="images/SHSU_athletics_logo.svg.png" data-type="dual" isConference="true">
               <td class="event-cell">
                 <div class="event-left">
-                  <div class="event-meta">2025-12-06 · 12:00 AM CST</div>
+                  <div class="event-meta">2025-12-06 · 12:00 PM CST</div>
                   <div class="event-title">Sam Houston State University</div>
                   <div class="event-result" data-has-result="false">
                     <span class="result-text"></span>
@@ -200,7 +201,7 @@
             <tr class="event-row" data-logo="images/Auburn_Tigers_logo.svg.png" data-type="dual" isConference="false">
               <td class="event-cell">
                 <div class="event-left">
-                  <div class="event-meta">2025-12-06 · 13:00 PM CST</div>
+                  <div class="event-meta">2025-12-06 · 1:00 PM CST</div>
                   <div class="event-title">Auburn University</div>
                   <div class="event-result" data-has-result="false">
                     <span class="result-text"></span>
@@ -213,7 +214,7 @@
             <tr class="event-row" data-logo="images/LSU_Athletics_logo.svg.png" data-type="dual" isConference="true">
               <td class="event-cell">
                 <div class="event-left">
-                  <div class="event-meta">2025-12-06 · 14:00 PM CST</div>
+                  <div class="event-meta">2025-12-06 · 2:00 PM CST</div>
                   <div class="event-title">Louisiana State University</div>
                   <div class="event-result" data-has-result="false">
                     <span class="result-text"></span>
@@ -440,16 +441,27 @@
         // normalize common 'TBD' or empty times to the DEFAULT_TIME
         if(!timePart || /tbd/i.test(timePart)) timePart = DEFAULT_TIME;
 
-        // Remove stray timezone abbrev (e.g., CST) for parsing; we'll treat times as local
-        timePart = timePart.replace(/\b([A-Za-z]{2,4})\b/g, '').trim();
+        // Extract AM/PM explicitly (if present), then remove other stray timezone abbreviations
+        // so we don't accidentally strip AM/PM (which are also short letter groups).
+        const ampmMatch = timePart.match(/\b(am|pm)\b/i);
+        const ampm = ampmMatch ? ampmMatch[1].toLowerCase() : null;
+        // remove tokens that are likely timezone abbreviations but keep am/pm
+        timePart = timePart.replace(/\b(?!am\b|pm\b)[A-Za-z]{2,4}\b/gi, '').trim();
 
         // handle formats like "10:00 AM" or "10 AM" or "14:30"
         let hour = null, minute = '00';
         const hhmm = timePart.match(/(\d{1,2}):(\d{2})/);
         if(hhmm){ hour = parseInt(hhmm[1],10); minute = hhmm[2]; }
         else{
-          const hhOnly = timePart.match(/(\d{1,2})\s*(AM|PM|am|pm)?/);
-          if(hhOnly){ hour = parseInt(hhOnly[1],10); if(hhOnly[2] && /pm/i.test(hhOnly[2]) && hour<12) hour += 12; if(hhOnly[2]&&/am/i.test(hhOnly[2])&&hour===12) hour = 0; }
+          const hhOnly = timePart.match(/(\d{1,2})\b/);
+          if(hhOnly){ hour = parseInt(hhOnly[1],10); }
+        }
+
+        // Apply AM/PM conversion if we detected it (or if it remained in timePart)
+        const effectiveAMPM = ampm || (timePart.match(/\b(am|pm)\b/i) ? (timePart.match(/\b(am|pm)\b/i)[1].toLowerCase()) : null);
+        if(hour !== null && effectiveAMPM){
+          if(effectiveAMPM === 'pm' && hour < 12) hour += 12;
+          if(effectiveAMPM === 'am' && hour === 12) hour = 0;
         }
 
         if(hour === null){
