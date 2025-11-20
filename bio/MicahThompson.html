@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Micah Thompson — Bio</title>
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <link rel="stylesheet" href="../style.css">
+  <style>/* local css */
+    .bio-card-container{ margin: 60px 36px; } .bio-card{ display:flex; gap:18px; align-items:center; padding:18px; border-radius:10px; box-shadow:0 4px 14px rgba(2,6,23,0.06); background:var(--card-bg); }
+    .bio-photo{ width:140px; height:180px; object-fit:cover; border-radius:6px; } .bio-main{ flex:1 1 auto; display:flex; flex-direction:column; gap:6px; }
+    .bio-stats{ display:flex; gap:12px; align-items:center; margin-top:8px; } .stat-pill{ background:#eef3fb; padding:6px 10px; border-radius:8px; font-weight:700; color:var(--accent); }
+    .tabs{ margin: 18px 36px; } .tab-list{ display:flex; gap:8px; } .tab-list button{ padding:10px 14px; border-radius:8px; border:1px solid #e6eef7; background:#fff; cursor:pointer; }
+    .tab-list button[aria-selected="true"]{ background:#0b5fff; color:#fff; border-color:#0b5fff; } .tab-panel{ margin-top:12px; padding:18px; border-radius:8px; background:#fff; box-shadow:0 2px 8px rgba(0,0,0,0.04); }
+    .article-list{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; } .article-list a{ color:var(--accent); font-weight:700; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <header><a href="../index.html" class="logo-link" aria-label="home"><img src="../images/logo.png" class="site-logo" alt="logo"></a><h1>Louisiana Tech Wrestling Club</h1></header>
+  <nav><a href="../index.html">Home</a><a href="../schedule.html">Schedule</a><a href="../roster.html">Roster</a>
+    <a href="https://securelb.imodules.com/s/810/rd/interior.aspx?sid=810&gid=1&pgid=340&cid=860&fbclid=PAQ0xDSwKLRoBleHRuA2FlbQIxMAABp3GkFeeoOzfwpesyXBb843FHJxW2CbbCQPw-_DJmbvO_uewB3AKPbvQ1e7Ca_aem_VVdFMYP0s0ygTULpWLz3Wg" target="_blank" rel="noopener noreferrer">Support The Team</a>
+    <a href="https://ncwa.net/teams/latu/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Men</a>
+    <a href="https://ncwa.net/teams/latuw/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Women</a></nav>
+  <main>
+    <section class="bio-card-container">
+      <div class="bio-card">
+        <img src="../images/MicahThompson.jpg" alt="Micah Thompson" class="bio-photo athlete-photo">
+        <div class="bio-main">
+          <div style="display:flex;align-items:center;gap:12px;justify-content:space-between;"><div><h2 class="athlete-name">Micah Thompson</h2><div class="athlete-meta">Sophomore · 174 lbs · Parkway HS · Bossier City, LA</div></div><div style="text-align:right; min-width:160px;"><div class="stat-pill">Record: —</div></div></div>
+          <div class="bio-stats" aria-hidden="true"><div class="stat-pill">Class: Sophomore</div><div class="stat-pill">Weight: 174</div><div class="stat-pill">H.S.: Parkway</div><div class="stat-pill">Hometown: Bossier City, LA</div></div>
+        </div>
+      </div>
+    </section>
+    <section class="tabs"><div role="tablist" aria-label="Athlete tabs" class="tab-list"><button role="tab" aria-selected="true" id="tab-bio">Bio</button><button role="tab" aria-selected="false" id="tab-articles">Articles</button></div>
+      <div id="panel-bio" class="tab-panel" role="tabpanel" aria-labelledby="tab-bio"><h3>About Micah</h3><p>Replace with Micah's biography.</p></div>
+      <div id="panel-articles" class="tab-panel" role="tabpanel" aria-labelledby="tab-articles" hidden><h3>Articles mentioning Micah</h3><ul id="article-list" class="article-list"><li>Loading…</li></ul></div>
+    </section>
+  </main>
+  <footer>&copy; 2025 Louisiana Tech Wrestling Club</footer>
+  <script>
+    (function(){ const bioTab=document.getElementById('tab-bio'), artTab=document.getElementById('tab-articles'), bioPanel=document.getElementById('panel-bio'), artPanel=document.getElementById('panel-articles'); function select(t){ if(t==='bio'){bioTab.setAttribute('aria-selected','true'); artTab.setAttribute('aria-selected','false'); bioPanel.hidden=false; artPanel.hidden=true;} else{bioTab.setAttribute('aria-selected','false'); artTab.setAttribute('aria-selected','true'); bioPanel.hidden=true; artPanel.hidden=false;} } bioTab.addEventListener('click',()=>select('bio')); artTab.addEventListener('click',()=>select('articles')); })();
+    (function(){ const athleteNames=['Micah Thompson','Micah','Thompson']; const candidates=['../articles_index.json','/articles_index.json','articles_index.json']; function tryLoad(i){ if(i>=candidates.length){ document.getElementById('article-list').innerHTML='<li>No articles found.</li>'; return;} fetch(candidates[i]).then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); }).then(list=>{ const matches=list.filter(a=> a.mentions && a.mentions.some(m=> athleteNames.some(n=> m.toLowerCase().includes(n.toLowerCase()) || n.toLowerCase().includes(m.toLowerCase())))); const ul=document.getElementById('article-list'); ul.innerHTML=''; if(matches.length===0){ ul.innerHTML='<li>No articles found.</li>'; return; } matches.forEach(a=>{ const li=document.createElement('li'); const link=document.createElement('a'); link.href=a.url; link.textContent=a.title+' — '+a.date; li.appendChild(link); ul.appendChild(li); }); }).catch(()=>tryLoad(i+1)); } tryLoad(0); })();
+  </script>
+</body>
+</html>
