@@ -8,6 +8,8 @@
     const response=await fetch('schedule.json',{cache:'no-store'});
     const rows=await response.json();
     if(!Array.isArray(rows))return;
+    const dateValue=value=>{const text=String(value||'').trim();if(!text)return Number.POSITIVE_INFINITY;const time=Date.parse(`${text}T00:00:00`);return Number.isNaN(time)?Number.POSITIVE_INFINITY:time;};
+    rows.sort((a,b)=>dateValue(a.date)-dateValue(b.date));
     body.innerHTML=rows.map(e=>{
       const away=/away|at|,\s*[A-Z]{2}/i.test(e.location||'')&&!/home/i.test(e.location||'');
       const tournament=/tournament|classic|championship|invite/i.test(e.opponent||'');
