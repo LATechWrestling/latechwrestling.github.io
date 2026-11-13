@@ -532,13 +532,16 @@
       }
 
       // run after DOMContentLoaded and after auto-insert has run
-      document.addEventListener('DOMContentLoaded', function(){
-        // small defer to ensure other DOM scripts (logo insertion) finished
-        setTimeout(function(){
-          const best = findNextEvent();
-          if(best){ populatePanel(best); updateCountdownElements(); setInterval(updateCountdownElements, 1000); }
-        }, 50);
-      });
+      let countdownTimer = null;
+      function refreshCountdown(){
+        const best = findNextEvent();
+        if(!best) return;
+        populatePanel(best);
+        updateCountdownElements();
+        if(!countdownTimer) countdownTimer = setInterval(updateCountdownElements, 1000);
+      }
+      document.addEventListener('DOMContentLoaded',()=>setTimeout(refreshCountdown,50));
+      document.addEventListener('schedule:updated',refreshCountdown);
 
     })();
     </script>
