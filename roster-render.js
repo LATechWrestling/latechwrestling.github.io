@@ -2,7 +2,6 @@
 (async function(){
   const main=document.querySelector('main');
   if(!main)return;
-  main.classList.add('data-loading');
   main.innerHTML='<p class="roster-loading">Loading roster…</p>';
   document.querySelector('.coaches')?.remove();
   const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -25,7 +24,6 @@
     };
     document.getElementById('roster-search').addEventListener('input',render);
     document.getElementById('roster-sort').addEventListener('change',render);
-    main.classList.remove('data-loading');
     render();
-  }catch(error){console.warn('Roster data could not be loaded.',error);main.innerHTML='<p class="roster-loading">Roster data could not be loaded.</p>';main.classList.remove('data-loading');}
+  }catch(error){console.warn('Roster data could not be loaded.',error);main.innerHTML='<p class="roster-loading">Roster data could not be loaded.</p>';}
 })();
