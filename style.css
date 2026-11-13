@@ -143,6 +143,8 @@ footer {
     bottom: 0;
 }
 
+.site-updated{ margin:8px 0 0; font-size:0.82rem; color:var(--muted); }
+
 /* News slideshow styles */
 .news-slideshow{
   margin: 60px 36px;
