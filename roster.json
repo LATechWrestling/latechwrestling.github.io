@@ -1,1 +1,56 @@
-[]
+[
+  {
+    "name": "Larry Davis",
+    "classYear": "Sophomore",
+    "weight": "165",
+    "school": "Parkway HS",
+    "hometown": "Bossier City, LA",
+    "photo": "images/LarryDavis.jpg",
+    "bio": "bio/LarryDavis.html",
+    "role": "",
+    "bioText": ""
+  },
+  {
+    "name": "Micah Thompson",
+    "classYear": "Junior",
+    "weight": "174",
+    "school": "Parkway HS",
+    "hometown": "Bossier City, LA",
+    "photo": "images/MicahThompson.jpg",
+    "bio": "bio/MicahThompson.html",
+    "role": "",
+    "bioText": ""
+  },
+  {
+    "name": "Noah Lucas",
+    "classYear": "Junior",
+    "weight": "197",
+    "school": "Jonesboro HS",
+    "hometown": "Jonesboro, LA",
+    "photo": "images/NoahLucas.jpg",
+    "bio": "bio/AlexJohnson.html",
+    "role": "",
+    "bioText": ""
+  },
+  {
+    "name": "Gary Smith",
+    "classYear": "",
+    "weight": "",
+    "school": "",
+    "hometown": "",
+    "photo": "images/logo.png",
+    "bio": "bio/GarySmith.html",
+    "role": "Head Coach",
+    "bioText": ""
+  },
+  {
+    "name": "Hollister Shoalmire",
+    "classYear": "Junior",
+    "weight": "174",
+    "school": "Caddo Magnet HS",
+    "hometown": "Bossier City, LA",
+    "photo": "images/logo.png",
+    "bio": "bio/HollisterShoalmire.html",
+    "role": ""
+  }
+]
