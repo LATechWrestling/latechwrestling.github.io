@@ -33,11 +33,11 @@ roster changes are published, each biography is written to its linked bio page.
 ### Creating the publishing key
 
 This one-time step should be done by the GitHub account owner or someone who has
-write access to `r-favaza/latechwrestling.github.io`:
+write access to `LATechWrestling/latechwrestling.github.io`:
 
 1. Sign in to GitHub and open [Fine-grained personal access tokens](https://github.com/settings/personal-access-tokens/new).
 2. Give the token a name such as `LaTech Website Editor` and choose an expiration date.
-3. Set **Resource owner** to `r-favaza`.
+3. Set **Resource owner** to `LATechWrestling`.
 4. Choose **Only select repositories**, then select `latechwrestling.github.io`.
 5. Under **Repository permissions**, set **Contents** to **Read and write**. Leave all other permissions alone.
 6. Select **Generate token** and copy the token immediately. GitHub only shows the complete token once.
