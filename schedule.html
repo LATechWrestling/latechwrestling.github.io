@@ -156,7 +156,7 @@
 
       })();
     </script>
-    <script src="schedule.js" defer></script>
+    <script src="schedule-render.js" defer></script>
     <script src="site-admin.js" defer></script>
     <script src="site-settings.js" defer></script>
 
@@ -335,7 +335,7 @@
             }
             if(!cellLeft) return;
             // if an <img.opponent-logo> already exists, skip
-            if(cellLeft.querySelector('img.opponent-logo')) return;
+            if(row.querySelector('img.opponent-logo')) return;
             if(logo && logo.trim()){
               // move existing children into a text wrapper so layout stays stable
               var textWrap = document.createElement('div');

@@ -11,6 +11,10 @@ Click the site logo five times quickly to reveal the private editor, then use th
 password `BulldogWC2022!`. On the first visit, the website owner must paste a
 GitHub fine-grained publishing key into the editor. After that, the editor can
 publish schedule, roster, article, and picture changes directly from the browser.
+The editor publishes to the GitHub repository; it cannot change files in an already
+running local preview. A local preview will show those changes only after the
+published files are pulled into this checkout. GitHub Pages may also take a short
+time to rebuild after publishing.
 
 The editor accepts Word `.docx`, legacy text/RTF, PDF, OpenDocument `.odt`, Markdown,
 HTML, and plain-text article files, plus picture uploads. It creates the article
