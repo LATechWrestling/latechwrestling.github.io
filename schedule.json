@@ -1,1 +1,11 @@
-[]
+[
+  {
+    "date": "2026-11-14",
+    "time": "1",
+    "opponent": "test",
+    "location": "test, test",
+    "result": "",
+    "note": "",
+    "logo": ""
+  }
+]
