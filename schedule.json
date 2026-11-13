@@ -1,14 +1,14 @@
 [
-  { "date": "2025-11-15", "time": "TBD", "opponent": "Lyon College", "location": "Batesville, AR", "result": "W 26-23", "note": "" },
-  { "date": "2025-11-15", "time": "TBD", "opponent": "Central Baptist College", "location": "Batesville, AR", "result": "L 24-20", "note": "" },
-  { "date": "2025-12-06", "time": "TBD", "opponent": "Auburn", "location": "Home", "result": "W 31-4", "note": "" },
-  { "date": "2025-12-06", "time": "TBD", "opponent": "LSU", "location": "Home", "result": "W 28-15", "note": "" },
-  { "date": "2026-01-04", "time": "TBD", "opponent": "Hawk Classic Open", "location": "Montgomery, AL", "note": "" },
-  { "date": "2025-01-10", "time": "TBD", "opponent": "Louisiana Tech Bulldog Rumble", "location": "Home", "note": "" },
-  { "date": "2025-01-17", "time": "TBD", "opponent": "Northern Oklahoma", "location": "Clarksville, AR", "result": "", "note": "" },
-  { "date": "2025-01-17", "time": "TBD", "opponent": "University of the Ozarks", "location": "Clarksville, AR", "result": "", "note": "" },
-  { "date": "2025-02-14", "time": "TBD", "opponent": "Seminole Rattler Invite", "location": "Tallahasse, FL", "note": "" },
-  { "date": "2025-02-21", "time": "TBD", "opponent": "LCWA State Championships", "location": "Home", "note": "" },
-  { "date": "2025-03-14", "time": "TBD", "opponent": "Southwest Conference Championships", "location": "TBD, TX", "note": "" },  
-  { "date": "2025-03-26 - 2025-03-28", "time": "TBD", "opponent": "NCWA National Championships", "location": "Bossier City, LA", "note": "" }
+  { "date": "2025-11-15", "time": "TBD", "opponent": "Lyon College", "location": "Batesville, AR", "result": "W 26-23", "note": "", "logo": "images/Lyon.webp" },
+  { "date": "2025-11-15", "time": "TBD", "opponent": "Central Baptist College", "location": "Batesville, AR", "result": "L 24-20", "note": "", "logo": "images/CBC.png" },
+  { "date": "2025-12-06", "time": "TBD", "opponent": "Auburn", "location": "Home", "result": "W 31-4", "note": "", "logo": "images/Auburn_Tigers_logo.svg.png" },
+  { "date": "2025-12-06", "time": "TBD", "opponent": "LSU", "location": "Home", "result": "W 28-15", "note": "", "logo": "images/LSU_Athletics_logo.svg.png" },
+  { "date": "2026-01-04", "time": "TBD", "opponent": "Hawk Classic Open", "location": "Montgomery, AL", "note": "", "logo": "images/Huntingdon.png" },
+  { "date": "2025-01-10", "time": "TBD", "opponent": "Louisiana Tech Bulldog Rumble", "location": "Home", "note": "", "logo": "images/logo.png" },
+  { "date": "2025-01-17", "time": "TBD", "opponent": "Northern Oklahoma", "location": "Clarksville, AR", "result": "", "note": "", "logo": "images/NOC.png" },
+  { "date": "2025-01-17", "time": "TBD", "opponent": "University of the Ozarks", "location": "Clarksville, AR", "result": "", "note": "", "logo": "images/ozarks.svg" },
+  { "date": "2025-02-14", "time": "TBD", "opponent": "Seminole Rattler Invite", "location": "Tallahasse, FL", "note": "", "logo": "images/famu.svg" },
+  { "date": "2025-02-21", "time": "TBD", "opponent": "LCWA State Championships", "location": "Home", "note": "", "logo": "images/logo.png" },
+  { "date": "2025-03-14", "time": "TBD", "opponent": "Southwest Conference Championships", "location": "TBD, TX", "note": "", "logo": "images/SHSU_athletics_logo.svg.png" },
+  { "date": "2025-03-26 - 2025-03-28", "time": "TBD", "opponent": "NCWA National Championships", "location": "Bossier City, LA", "note": "", "logo": "images/NCWA.png" }
 ]

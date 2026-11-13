@@ -321,7 +321,7 @@
     <!-- Auto-insert opponent logos from data-logo attribute -->
     <script>
     (function(){
-      document.addEventListener('DOMContentLoaded', function(){
+      function insertOpponentLogos(){
         document.querySelectorAll('.event-row').forEach(function(row){
           try{
             var logo = row.getAttribute('data-logo');
@@ -392,7 +392,11 @@
             }
           }catch(e){ /* ignore individual row errors */ }
         });
-      });
+      }
+      // schedule.js replaces the table rows after fetching schedule.json.
+      // Hydrate logos both for the initial HTML and for those fetched rows.
+      document.addEventListener('DOMContentLoaded', insertOpponentLogos);
+      document.addEventListener('schedule:updated', insertOpponentLogos);
     })();
     </script>
 
