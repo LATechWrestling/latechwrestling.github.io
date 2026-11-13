@@ -47,6 +47,10 @@ nav a {
     font-weight: bold;
 }
 
+/* The private editor link is revealed only after the logo gesture. */
+.hidden-admin-link { display: none !important; }
+.hidden-admin-link:not([tabindex="-1"]) { display: inline-block !important; }
+
 main {
   margin: 60px 36px;
   background: #fff;

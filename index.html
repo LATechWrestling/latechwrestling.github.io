@@ -24,8 +24,9 @@
             <a href="schedule.html">Schedule</a>
             <a href="roster.html">Roster</a>
             <a href="media.html">Media</a>
+            <a href="admin.html" class="hidden-admin-link" tabindex="-1">Private Editor</a>
             <a href="https://securelb.imodules.com/s/810/rd/interior.aspx?sid=810&gid=1&pgid=340&cid=860&fbclid=PAQ0xDSwKLRoBleHRuA2FlbQIxMAABp3GkFeeoOzfwpesyXBb843FHJxW2CbbCQPw-_DJmbvO_uewB3AKPbvQ1e7Ca_aem_VVdFMYP0s0ygTULpWLz3Wg" target="_blank" rel="noopener noreferrer">Support The Team</a>
-            <a href="https://louisianatechwrestlingclubgear2026.itemorder.com/shop/home/" target="_blank" rel="noopener noreferrer">Buy Team Gear</a>
+            <a id="buy-team-gear" href="https://louisianatechwrestlingclubgear2026.itemorder.com/shop/home/" target="_blank" rel="noopener noreferrer">Buy Team Gear</a>
             <a href="https://ncwa.net/teams/latu/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Men</a>
             <a href="https://ncwa.net/teams/latuw/" target="_blank" rel="noopener noreferrer">NCWA Team Page - Women</a>
         </nav>
@@ -63,8 +64,8 @@
             <section id="about">
                 <h2>About Us</h2>
                 <picture>
-                    <source srcset="images/TeamPictureLight.png" type="image/png">
-                    <img src="images/TeamPictureLight.png" alt="2025-2026 Team Picture" width="600" height="400" style="display: block; margin: 0 auto;">
+                    <source id="home-picture-source" srcset="images/TeamPictureLight.png" type="image/png">
+                    <img id="home-picture" src="images/TeamPictureLight.png" alt="2025-2026 Team Picture" width="600" height="400" style="display: block; margin: 0 auto;">
                 </picture>
                 <br>
                 <h3>Team History</h3>
@@ -105,5 +106,8 @@
         </footer>
 
         <script src="slideshow.js" defer></script>
+        <script src="site-admin.js" defer></script>
+        <script src="site-settings.js" defer></script>
+        <script>fetch('content.json',{cache:'no-store'}).then(r=>r.json()).then(c=>{if(c.homeImage){document.getElementById('home-picture').src=c.homeImage;document.getElementById('home-picture-source').srcset=c.homeImage;}if(c.homeImageAlt)document.getElementById('home-picture').alt=c.homeImageAlt;}).catch(()=>{});</script>
     </body>
 </html>

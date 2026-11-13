@@ -1,0 +1,15 @@
+[
+  {"name":"Raymond Favaza","classYear":"Senior","weight":"184","school":"Fontainebleau HS","hometown":"Mandeville, LA","photo":"images/RaymondFavaza.jpg","bio":"bio/RaymondFavaza.html"},
+  {"name":"Samuel Favaza","classYear":"Freshman","weight":"141","school":"Fontainebleau HS","hometown":"Mandeville, LA","photo":"images/SamuelFavaza.jpg","bio":"bio/SamuelFavaza.html"},
+  {"name":"Brogen Dodd","classYear":"Freshman","weight":"235","school":"Haughton HS","hometown":"Haughton, LA","photo":"images/BrogenDodd.jpg","bio":"bio/BrogenDodd.html"},
+  {"name":"Larry Davis","classYear":"Freshman","weight":"165","school":"Parkway HS","hometown":"Bossier City, LA","photo":"images/LarryDavis.jpg","bio":"bio/LarryDavis.html"},
+  {"name":"Micah Thompson","classYear":"Sophomore","weight":"174","school":"Parkway HS","hometown":"Bossier City, LA","photo":"images/MicahThompson.jpg","bio":"bio/MicahThompson.html"},
+  {"name":"Gabriel Brewer","classYear":"Junior","weight":"197","school":"Brother Martin HS","hometown":"Slidell, LA","photo":"images/GabrielBrewer.jpg","bio":"bio/GabrielBrewer.html"},
+  {"name":"Noah Lucas","classYear":"Sophomore","weight":"197","school":"Jonesboro HS","hometown":"Jonesboro, LA","photo":"images/NoahLucas.jpg","bio":"bio/NoahLucas.html"},
+  {"name":"Sean Bell","classYear":"Graduate","weight":"157","school":"Airline HS","hometown":"Shreveport, LA","photo":"images/SeanBell.jpg","bio":"bio/SeanBell.html"},
+  {"name":"Brayden Lobrano","classYear":"Freshman","weight":"125","school":"Parkway HS","hometown":"Bossier City, LA","photo":"images/logo.png","bio":"bio/BraydenLobrano.html"},
+  {"name":"Raiden Flores","classYear":"Freshman","weight":"174","school":"Parkway HS","hometown":"Bossier City, LA","photo":"images/logo.png","bio":"bio/RaidenFlores.html"},
+  {"name":"Jordan Lewis","classYear":"Freshman","weight":"133","school":"C.E. Byrd HS","hometown":"Shreveport, LA","photo":"images/logo.png","bio":"bio/JordanLewis.html"},
+  {"name":"Gary Smith","classYear":"","weight":"","school":"Head Coach","hometown":"","photo":"images/logo.png","bio":"bio/GarySmith.html","role":"Head Coach"},
+  {"name":"Timothy Favaza","classYear":"","weight":"","school":"Assistant Coach","hometown":"","photo":"images/logo.png","bio":"bio/TimothyFavaza.html","role":"Assistant Coach"}
+]

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Private Content Editor - Louisiana Tech Wrestling Club</title>
+  <link rel="icon" href="images/logo.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <header><a href="index.html" class="logo-link" aria-label="Home"><img src="images/logo.png" alt="Louisiana Tech Wrestling Club Logo" class="site-logo" width="242" height="110"></a><h1>Louisiana Tech Wrestling Club</h1></header>
+  <main class="admin-main">
+    <h2>Private Content Editor</h2>
+    <p class="admin-intro">This page lets you update the website without opening folders, editing code, creating PDFs, or making slideshows.</p>
+    <div class="admin-note"><strong>One-time setup:</strong> the website owner must provide a GitHub publishing key. Once it is saved in this browser, use the large Publish buttons. The key is kept only in this browser and is never shown on the public website.</div>
+    <section id="login-card" class="admin-card"><h3>Private sign in</h3><label for="admin-password">Password</label><input id="admin-password" type="password" autocomplete="current-password"><div class="admin-actions"><button class="admin-button" id="login-button">Open editor</button></div><p id="login-message" class="admin-status" role="alert"></p></section>
+    <section id="editor" hidden>
+      <div class="admin-connection-actions"><button class="admin-button secondary" id="show-connection">Change publishing key or connection</button></div>
+      <section id="connection-card" class="admin-card"><h3>Website connection</h3><p>Enter the publishing key once on this computer.</p><div class="admin-grid"><label>GitHub owner<input id="repo-owner" value="r-favaza"></label><label>Repository<input id="repo-name" value="latechwrestling.github.io"></label><label>Branch<input id="repo-branch" value="main"></label><label>Publishing key<input id="github-token" type="password" autocomplete="off" placeholder="Paste the key here once"></label></div><div class="admin-actions"><button class="admin-button" id="connect-button">Connect and load current website</button><button class="admin-button secondary" id="forget-button">Forget saved key</button></div><p id="connection-status" class="admin-status"></p></section>
+      <div id="tools" hidden>
+        <div class="admin-tabs"><button data-tab="schedule" class="active">Schedule</button><button data-tab="roster">Roster</button><button data-tab="article">Write article</button><button data-tab="home">Other</button></div>
+        <section id="panel-schedule" class="admin-panel active"><h3>Schedule</h3><p>Change dates, times, opponents, locations, and results. Leave Result blank for an upcoming event.</p><div id="schedule-list"></div><button class="admin-button secondary" id="add-event">+ Add event</button><div class="admin-actions"><button class="admin-button" id="publish-schedule">Publish schedule changes</button></div><p id="schedule-status" class="admin-status"></p></section>
+        <section id="panel-roster" class="admin-panel"><h3>Roster and bios</h3><p>Change a person’s information, picture, or biography. The biography is published automatically to that roster member’s bio page.</p><div id="roster-list"></div><button class="admin-button secondary" id="add-person">+ Add person</button><div class="admin-actions"><button class="admin-button" id="publish-roster">Publish roster and bio changes</button></div><p id="roster-status" class="admin-status"></p></section>
+        <section id="panel-article" class="admin-panel"><h3>Write an article</h3><p>Type an article or upload a Word document, PDF, text file, Markdown file, HTML file, or rich-text file. The editor creates the web article and adds it to the Media page automatically.</p><div class="admin-card"><div class="admin-grid"><label>Headline<input id="article-title"></label><label>Date<input id="article-date" type="date"></label><label>Article picture<input id="article-image" placeholder="Upload a picture below"></label></div><div class="admin-actions"><label class="file-button">Upload article picture<input id="article-image-file" type="file" accept="image/*"></label><label class="file-button">Upload article document<input id="article-doc" type="file" accept=".docx,.doc,.odt,.pdf,.txt,.md,.html,.htm,.rtf,application/*,text/*"></label></div><label>Short description<textarea id="article-excerpt"></textarea></label><label>Article text<textarea id="article-body" placeholder="Type here, or upload a document above"></textarea></label><div class="admin-actions"><button class="admin-button" id="publish-article">Publish article to Media</button></div><p id="article-status" class="admin-status"></p></div></section>
+        <section id="panel-home" class="admin-panel"><h3>Home picture and team gear</h3><p>Choose a picture from the computer. You can change the team-gear web address or turn the link off while the store is inactive.</p><div class="admin-card"><label>Picture description<input id="home-alt"></label><label class="file-button">Choose new home picture<input id="home-image-file" type="file" accept="image/*"></label><img id="home-preview" class="admin-preview" alt="Home picture preview"><hr><label class="checkbox-row"><input id="gear-enabled" type="checkbox"><span>Show the “Buy Team Gear” link</span></label><label>Team gear web address<input id="gear-url" type="url" placeholder="https://..."></label><div class="admin-actions"><button class="admin-button" id="publish-home">Publish home picture and site settings</button></div><p id="home-status" class="admin-status"></p></div></section>
+      </div>
+    </section>
+  </main>
+  <footer>&copy; 2025 Louisiana Tech Wrestling Club</footer>
+  <script src="https://unpkg.com/mammoth@1.8.0/mammoth.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <script src="admin.js" defer></script>
+</body>
+</html>
