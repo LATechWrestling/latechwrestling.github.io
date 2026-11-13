@@ -9,7 +9,7 @@
   try{
     const response=await fetch('roster.json',{cache:'no-store'});
     const people=await response.json();
-    if(!Array.isArray(people))return;
+    if(!Array.isArray(people))throw new Error('Roster data is not an array.');
     const card=p=>`<article class="athlete-card${p.role?' coach-card':''}" data-name="${esc(p.name)}"><img src="${esc(p.photo||'images/logo.png')}" alt="${esc(p.name)}" class="athlete-photo"><div class="athlete-left">${p.weight?`<div class="weight-pill">${esc(p.weight)} lbs</div>`:''}<h3 class="athlete-name"><a href="${esc(p.bio||'#')}">${esc(p.name)}</a></h3></div><div class="athlete-info"><div class="athlete-right"><div class="athlete-meta">${esc(p.role||p.classYear)}</div><div class="athlete-school">${esc(p.school)}</div><div class="athlete-hometown">${esc(p.hometown)}</div>${p.bio?`<a class="bio-link" href="${esc(p.bio)}">Full Bio</a>`:''}</div></div></article>`;
     main.innerHTML=`<h2>Men's Team</h2><div class="roster-controls"><label for="roster-search" class="visually-hidden">Search roster</label><input id="roster-search" type="search" placeholder="Search by name, school, hometown..." aria-label="Search roster"><label for="roster-sort">Sort by</label><select id="roster-sort" aria-label="Sort roster"><option value="name">Name (A-Z)</option><option value="class">Class</option><option value="hometown">Hometown</option><option value="weight">Weight</option></select></div><div id="roster-results"></div>`;
     const coaches=document.querySelector('.coaches');

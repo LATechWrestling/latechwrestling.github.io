@@ -50,7 +50,6 @@ nav a {
 /* The private editor link is revealed only after the logo gesture. */
 .hidden-admin-link { display: none !important; }
 .hidden-admin-link:not([tabindex="-1"]) { display: inline-block !important; }
-.data-loading { visibility: hidden; }
 .roster-loading { padding: 32px; text-align: center; color: var(--muted, #64748b); }
 
 main {
