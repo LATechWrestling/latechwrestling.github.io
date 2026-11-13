@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "date": "2026-12-05",
+    "time": "TBD",
+    "opponent": "Bulldog Open",
+    "location": "HOME",
+    "result": "",
+    "note": "VENUE TBD",
+    "logo": ""
+  },
+  {
+    "date": "2026-11-21",
+    "time": "9:30 AM",
+    "opponent": "UHD Bayou Classic",
+    "location": "Houston, TX",
+    "result": "",
+    "note": "University of Houston - Downtown (Success and Wellness Center)",
+    "logo": "images\\UHD_logo.png"
+  },
+  {
+    "date": "2027-01-10",
+    "time": "9:00 AM",
+    "opponent": "Hawk Classic Open",
+    "location": "Montgomery, AL",
+    "result": "",
+    "note": "Huntingdon College (Garrett Coliseum)",
+    "logo": "images\\Huntingdon.png"
+  },
+  {
+    "date": "2027-01-13",
+    "time": "TBD",
+    "opponent": "LSU",
+    "location": "Geismar, LA",
+    "result": "",
+    "note": "Dutchtown High School",
+    "logo": "images\\LSU_Athletics_logo.svg.png"
+  },
+  {
+    "date": "2027-01-13",
+    "time": "TBD",
+    "opponent": "McNeese State University",
+    "location": "Geismar, LA",
+    "result": "",
+    "note": "Dutchtown High School",
+    "logo": "images\\McNeese_State_Athletics_logo.svg.png"
+  },
+  {
+    "date": "2027-01-23",
+    "time": "TBD",
+    "opponent": "Louisiana Tech Bulldog Rumble",
+    "location": "HOME",
+    "result": "",
+    "note": "Louisiana Tech University (Lambright Sports and Wellness Center)",
+    "logo": ""
+  },
+  {
+    "date": "2027-01-30",
+    "time": "TBD",
+    "opponent": "Longhorn Classic",
+    "location": "Austin, TX",
+    "result": "",
+    "note": "University of Texas at Austin (VENUE)",
+    "logo": "images\\Texas.png"
+  },
+  {
+    "date": "2027-02-20",
+    "time": "TBD",
+    "opponent": "LCWA State Championship",
+    "location": "New Orleans, LA",
+    "result": "",
+    "note": "Xavier University of Louisiana (VENUE)",
+    "logo": "images\\xula.png"
+  },
+  {
+    "date": "2027-03-06",
+    "time": "TBD",
+    "opponent": "NCWA Southwest Conference Championships",
+    "location": "Stephenville, TX",
+    "result": "",
+    "note": "Tarleton State University (VENUE)",
+    "logo": "images\\Tarleton-st_logo_from_NCAA.svg.webp"
+  },
+  {
+    "date": "2027-03-17",
+    "time": "TBD",
+    "opponent": "NCWA National Championships",
+    "location": "Bossier City, LA",
+    "result": "",
+    "note": "",
+    "logo": "images\\NCWA.png"
+  }
+]
