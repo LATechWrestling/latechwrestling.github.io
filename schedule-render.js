@@ -8,7 +8,7 @@
     const response=await fetch('schedule.json',{cache:'no-store'});
     const rows=await response.json();
     if(!Array.isArray(rows))return;
-    const dateValue=value=>{const text=String(value||'').trim();if(!text)return Number.POSITIVE_INFINITY;const time=Date.parse(`${text}T00:00:00`);return Number.isNaN(time)?Number.POSITIVE_INFINITY:time;};
+    const dateValue=value=>{const text=String(value||'').trim();if(!text)return Number.POSITIVE_INFINITY;const iso=/^\d{4}-\d{2}-\d{2}$/.test(text)?`${text}T00:00:00`:text;const time=Date.parse(iso);return Number.isNaN(time)?Number.POSITIVE_INFINITY:time;};
     rows.sort((a,b)=>dateValue(a.date)-dateValue(b.date));
     body.innerHTML=rows.map(e=>{
       const away=/away|at|,\s*[A-Z]{2}/i.test(e.location||'')&&!/home/i.test(e.location||'');
